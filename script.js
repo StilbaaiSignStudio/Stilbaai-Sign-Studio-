@@ -1,29 +1,32 @@
+// Footer year
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-const hamburger = document.querySelector(".hamburger");
-const mobileMenu = document.querySelector(".mobile-menu");
+// Mobile menu
+const toggle = document.querySelector(".nav-toggle");
+const mobile = document.querySelector(".mobile-nav");
 
-if (hamburger && mobileMenu) {
-  hamburger.addEventListener("click", () => {
-    const isOpen = hamburger.getAttribute("aria-expanded") === "true";
-    hamburger.setAttribute("aria-expanded", String(!isOpen));
-    mobileMenu.hidden = isOpen;
+if (toggle && mobile) {
+  toggle.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+    mobile.hidden = isOpen;
   });
 
-  mobileMenu.querySelectorAll("a").forEach(a => {
+  mobile.querySelectorAll("a").forEach(a => {
     a.addEventListener("click", () => {
-      hamburger.setAttribute("aria-expanded", "false");
-      mobileMenu.hidden = true;
+      toggle.setAttribute("aria-expanded", "false");
+      mobile.hidden = true;
     });
   });
 }
 
-// Optional: replace the quote form link later (Google Form, etc.)
-const quoteLink = document.getElementById("quoteLink");
-if (quoteLink) {
-  quoteLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("When you have your quote form link, I’ll plug it in here.");
-  });
+// WhatsApp button
+const waBtn = document.getElementById("waBtn");
+if (waBtn) {
+  const phone = "27824195453"; // SA format, no +
+  const msg = encodeURIComponent(
+    "Hi Stilbaai Sign Studio 👋\n\nI’d like a quote for:\n• Service:\n• Size (mm):\n• Quantity:\n• Material:\n• Install location:\n• When needed:\n\n(Attach artwork/photos if available)"
+  );
+  waBtn.href = `https://wa.me/${phone}?text=${msg}`;
 }
